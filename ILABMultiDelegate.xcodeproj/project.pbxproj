@@ -1,0 +1,493 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FF1D6AB61B22DF8200F33879 /* ILABMultiDelegate_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = FF1D6AB51B22DF8200F33879 /* ILABMultiDelegate_Tests.m */; };
+		FF1D6AB71B22DF8200F33879 /* libILABMultiDelegateIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF1D6A7B1B22DF4C00F33879 /* libILABMultiDelegateIOS.a */; };
+		FF1D6ABD1B22DF9600F33879 /* ILABMultiDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FF1D6A591B22DDE700F33879 /* ILABMultiDelegate.m */; };
+		FF1D6ABE1B22DF9A00F33879 /* ILABMultiDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FF1D6A591B22DDE700F33879 /* ILABMultiDelegate.m */; };
+		FF1D6AC11B22E2D800F33879 /* ILABDelegatingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = FF1D6AC01B22E2D800F33879 /* ILABDelegatingObject.m */; };
+		FF1D6AC41B22E2F300F33879 /* ILABTestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FF1D6AC31B22E2F300F33879 /* ILABTestDelegate.m */; };
+		FF1D6AC81B22E9ED00F33879 /* ILABTestDelegateNoProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = FF1D6AC71B22E9ED00F33879 /* ILABTestDelegateNoProtocol.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FF1D6AB81B22DF8200F33879 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF1D6A351B22DD6600F33879 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FF1D6A7A1B22DF4C00F33879;
+			remoteInfo = ILABMultiDelegateIOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FF1D6A791B22DF4C00F33879 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		FF1D6A581B22DDE700F33879 /* ILABMultiDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILABMultiDelegate.h; sourceTree = "<group>"; };
+		FF1D6A591B22DDE700F33879 /* ILABMultiDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILABMultiDelegate.m; sourceTree = "<group>"; };
+		FF1D6A7B1B22DF4C00F33879 /* libILABMultiDelegateIOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libILABMultiDelegateIOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF1D6A961B22DF5F00F33879 /* libILABMultiDelegateCocoa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libILABMultiDelegateCocoa.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF1D6AB11B22DF8200F33879 /* ILABMultiDelegate Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ILABMultiDelegate Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF1D6AB41B22DF8200F33879 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF1D6AB51B22DF8200F33879 /* ILABMultiDelegate_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ILABMultiDelegate_Tests.m; sourceTree = "<group>"; };
+		FF1D6ABF1B22E2D800F33879 /* ILABDelegatingObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILABDelegatingObject.h; sourceTree = "<group>"; };
+		FF1D6AC01B22E2D800F33879 /* ILABDelegatingObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILABDelegatingObject.m; sourceTree = "<group>"; };
+		FF1D6AC21B22E2F300F33879 /* ILABTestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILABTestDelegate.h; sourceTree = "<group>"; };
+		FF1D6AC31B22E2F300F33879 /* ILABTestDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILABTestDelegate.m; sourceTree = "<group>"; };
+		FF1D6AC61B22E9ED00F33879 /* ILABTestDelegateNoProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILABTestDelegateNoProtocol.h; sourceTree = "<group>"; };
+		FF1D6AC71B22E9ED00F33879 /* ILABTestDelegateNoProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILABTestDelegateNoProtocol.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FF1D6A781B22DF4C00F33879 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF1D6A931B22DF5F00F33879 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF1D6AAE1B22DF8200F33879 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF1D6AB71B22DF8200F33879 /* libILABMultiDelegateIOS.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FF1D6A341B22DD6600F33879 = {
+			isa = PBXGroup;
+			children = (
+				FF1D6A571B22DDD500F33879 /* Source */,
+				FF1D6AB21B22DF8200F33879 /* ILABMultiDelegate Tests */,
+				FF1D6A3E1B22DD6600F33879 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FF1D6A3E1B22DD6600F33879 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FF1D6A7B1B22DF4C00F33879 /* libILABMultiDelegateIOS.a */,
+				FF1D6A961B22DF5F00F33879 /* libILABMultiDelegateCocoa.a */,
+				FF1D6AB11B22DF8200F33879 /* ILABMultiDelegate Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FF1D6A571B22DDD500F33879 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				FF1D6A581B22DDE700F33879 /* ILABMultiDelegate.h */,
+				FF1D6A591B22DDE700F33879 /* ILABMultiDelegate.m */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		FF1D6AB21B22DF8200F33879 /* ILABMultiDelegate Tests */ = {
+			isa = PBXGroup;
+			children = (
+				FF1D6AC51B22E48A00F33879 /* Test Classes */,
+				FF1D6AB51B22DF8200F33879 /* ILABMultiDelegate_Tests.m */,
+				FF1D6AB31B22DF8200F33879 /* Supporting Files */,
+			);
+			path = "ILABMultiDelegate Tests";
+			sourceTree = "<group>";
+		};
+		FF1D6AB31B22DF8200F33879 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FF1D6AB41B22DF8200F33879 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FF1D6AC51B22E48A00F33879 /* Test Classes */ = {
+			isa = PBXGroup;
+			children = (
+				FF1D6ABF1B22E2D800F33879 /* ILABDelegatingObject.h */,
+				FF1D6AC01B22E2D800F33879 /* ILABDelegatingObject.m */,
+				FF1D6AC21B22E2F300F33879 /* ILABTestDelegate.h */,
+				FF1D6AC31B22E2F300F33879 /* ILABTestDelegate.m */,
+				FF1D6AC61B22E9ED00F33879 /* ILABTestDelegateNoProtocol.h */,
+				FF1D6AC71B22E9ED00F33879 /* ILABTestDelegateNoProtocol.m */,
+			);
+			name = "Test Classes";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		FF1D6A941B22DF5F00F33879 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		FF1D6A7A1B22DF4C00F33879 /* ILABMultiDelegateIOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF1D6A8C1B22DF4C00F33879 /* Build configuration list for PBXNativeTarget "ILABMultiDelegateIOS" */;
+			buildPhases = (
+				FF1D6A771B22DF4C00F33879 /* Sources */,
+				FF1D6A781B22DF4C00F33879 /* Frameworks */,
+				FF1D6A791B22DF4C00F33879 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ILABMultiDelegateIOS;
+			productName = ILABMultiDelegateIOS;
+			productReference = FF1D6A7B1B22DF4C00F33879 /* libILABMultiDelegateIOS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		FF1D6A951B22DF5F00F33879 /* ILABMultiDelegateCocoa */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF1D6AA71B22DF6000F33879 /* Build configuration list for PBXNativeTarget "ILABMultiDelegateCocoa" */;
+			buildPhases = (
+				FF1D6A921B22DF5F00F33879 /* Sources */,
+				FF1D6A931B22DF5F00F33879 /* Frameworks */,
+				FF1D6A941B22DF5F00F33879 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ILABMultiDelegateCocoa;
+			productName = ILABMultiDelegateCocoa;
+			productReference = FF1D6A961B22DF5F00F33879 /* libILABMultiDelegateCocoa.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		FF1D6AB01B22DF8200F33879 /* ILABMultiDelegate Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF1D6ABA1B22DF8200F33879 /* Build configuration list for PBXNativeTarget "ILABMultiDelegate Tests" */;
+			buildPhases = (
+				FF1D6AAD1B22DF8200F33879 /* Sources */,
+				FF1D6AAE1B22DF8200F33879 /* Frameworks */,
+				FF1D6AAF1B22DF8200F33879 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FF1D6AB91B22DF8200F33879 /* PBXTargetDependency */,
+			);
+			name = "ILABMultiDelegate Tests";
+			productName = "ILABMultiDelegate Tests";
+			productReference = FF1D6AB11B22DF8200F33879 /* ILABMultiDelegate Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FF1D6A351B22DD6600F33879 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Interfacelab LLC";
+				TargetAttributes = {
+					FF1D6A7A1B22DF4C00F33879 = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+					FF1D6A951B22DF5F00F33879 = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+					FF1D6AB01B22DF8200F33879 = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+				};
+			};
+			buildConfigurationList = FF1D6A381B22DD6600F33879 /* Build configuration list for PBXProject "ILABMultiDelegate" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = FF1D6A341B22DD6600F33879;
+			productRefGroup = FF1D6A3E1B22DD6600F33879 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FF1D6A7A1B22DF4C00F33879 /* ILABMultiDelegateIOS */,
+				FF1D6A951B22DF5F00F33879 /* ILABMultiDelegateCocoa */,
+				FF1D6AB01B22DF8200F33879 /* ILABMultiDelegate Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FF1D6AAF1B22DF8200F33879 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FF1D6A771B22DF4C00F33879 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF1D6ABD1B22DF9600F33879 /* ILABMultiDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF1D6A921B22DF5F00F33879 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF1D6ABE1B22DF9A00F33879 /* ILABMultiDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF1D6AAD1B22DF8200F33879 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF1D6AC11B22E2D800F33879 /* ILABDelegatingObject.m in Sources */,
+				FF1D6AC81B22E9ED00F33879 /* ILABTestDelegateNoProtocol.m in Sources */,
+				FF1D6AC41B22E2F300F33879 /* ILABTestDelegate.m in Sources */,
+				FF1D6AB61B22DF8200F33879 /* ILABMultiDelegate_Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FF1D6AB91B22DF8200F33879 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FF1D6A7A1B22DF4C00F33879 /* ILABMultiDelegateIOS */;
+			targetProxy = FF1D6AB81B22DF8200F33879 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		FF1D6A4F1B22DD6600F33879 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		FF1D6A501B22DD6600F33879 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FF1D6A8D1B22DF4C00F33879 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		FF1D6A8E1B22DF4C00F33879 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		FF1D6AA81B22DF6000F33879 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		FF1D6AA91B22DF6000F33879 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		FF1D6ABB1B22DF8200F33879 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ILABMultiDelegate Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FF1D6ABC1B22DF8200F33879 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ILABMultiDelegate Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FF1D6A381B22DD6600F33879 /* Build configuration list for PBXProject "ILABMultiDelegate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF1D6A4F1B22DD6600F33879 /* Debug */,
+				FF1D6A501B22DD6600F33879 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF1D6A8C1B22DF4C00F33879 /* Build configuration list for PBXNativeTarget "ILABMultiDelegateIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF1D6A8D1B22DF4C00F33879 /* Debug */,
+				FF1D6A8E1B22DF4C00F33879 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		FF1D6AA71B22DF6000F33879 /* Build configuration list for PBXNativeTarget "ILABMultiDelegateCocoa" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF1D6AA81B22DF6000F33879 /* Debug */,
+				FF1D6AA91B22DF6000F33879 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		FF1D6ABA1B22DF8200F33879 /* Build configuration list for PBXNativeTarget "ILABMultiDelegate Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF1D6ABB1B22DF8200F33879 /* Debug */,
+				FF1D6ABC1B22DF8200F33879 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FF1D6A351B22DD6600F33879 /* Project object */;
+}
