@@ -28,6 +28,8 @@
     if ((self=[self initWithDelegates:nil]))
     {
         _protocol=protocol;
+        if (_protocol)
+            class_addProtocol([self class], protocol);
     }
     
     return self;

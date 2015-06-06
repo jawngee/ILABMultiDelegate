@@ -35,6 +35,12 @@
     [super tearDown];
 }
 
+-(void)testMultiDelegateConformsToProtocol
+{
+    ILABMultiDelegate *multiDelegate=(ILABMultiDelegate *)delegatingObject.delegate;
+    XCTAssertTrue([multiDelegate conformsToProtocol:@protocol(ILABDelegateObjectDelegate)]);
+}
+
 - (void)testAddDelegate
 {
     ILABMultiDelegate *multiDelegate=(ILABMultiDelegate *)delegatingObject.delegate;
