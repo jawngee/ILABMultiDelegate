@@ -198,11 +198,18 @@
 
 - (void)forwardInvocation:(NSInvocation *)invocation
 {
+    if (_delegates.count==0)
+        return;
+    
     SEL selector = [invocation selector];
     BOOL responded = NO;
+    BOOL hasDelegates = NO;
     
     for (id delegate in _delegates)
     {
+        if (delegate)
+            hasDelegates = YES;
+
         if (delegate && [delegate respondsToSelector:selector])
         {
             [invocation invokeWithTarget:delegate];
@@ -210,7 +217,7 @@
         }
     }
     
-    if (!responded && _protocol)
+    if (hasDelegates && !responded && _protocol)
     {
         struct objc_method_description methodDesc = protocol_getMethodDescription(_protocol, selector, YES, YES);
         if (methodDesc.name != NULL)
