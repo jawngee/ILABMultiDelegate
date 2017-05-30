@@ -72,7 +72,17 @@
  *
  *	@return The new instance
  */
--(id)initWithProtocol:(Protocol *)protocol;
+-(instancetype)initWithProtocol:(Protocol *)protocol;
+
+
+/**
+ Creates a new instance with the `Protocol` that the delegates must conform to.  If you later add a
+ delegate that does not conform to the protocol, an exception will be raised.
+ 
+ @param protocol The `Protocol` to conform to
+ @return The new instance
+ */
++(id)delegateWithProtocol:(Protocol *)protocol;
 
 
 /**
@@ -83,7 +93,7 @@
  *
  *	@return The new instance
  */
--(id)initWithProtocols:(NSArray<Protocol *> *)protocols;
+-(instancetype)initWithProtocols:(NSArray<Protocol *> *)protocols;
 
 
 /**
@@ -95,7 +105,17 @@
  *
  *	@return The new instance
  */
--(id)initWithProtocols:(NSArray<Protocol *> *)protocols strict:(BOOL)strict;
+-(instancetype)initWithProtocols:(NSArray<Protocol *> *)protocols strict:(BOOL)strict;
+
+
+/**
+ Convenience class method for intializing a new delegate for a given list of protocols.
+ 
+ @param protocols The `Protocol` to conform to
+ @param strict For multiple protocols, insure that the added delegates conform to them.  Default is YES.
+ @return The new instance
+ */
++(id)delegateWithProtocols:(NSArray<Protocol *> *)protocols strict:(BOOL)strict;
 
 
 /**

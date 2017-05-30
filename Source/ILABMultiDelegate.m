@@ -39,6 +39,14 @@
     return [self initWithProtocols:protocolsArray strict:YES];
 }
 
++(id)delegateWithProtocol:(Protocol *)protocol {
+    return (id)[[[self class] alloc] initWithProtocols:@[protocol] strict:YES];
+}
+
++(id)delegateWithProtocols:(NSArray<Protocol *> *)protocols strict:(BOOL)strict {
+    return (id)[[[self class] alloc] initWithProtocols:protocols strict:strict];
+}
+
 -(instancetype)initWithProtocols:(NSArray<Protocol *> *)protocolsArray strict:(BOOL)strict {
     if ((self = [super init])) {
         if (protocolsArray.count == 0) {
@@ -229,4 +237,3 @@
 }
 
 @end
-
