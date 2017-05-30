@@ -11,7 +11,7 @@ Suppose you have a `UITableView` and you want to implement the data source using
 
 First create an `ILABMultiDelegate` instance. You need to keep a strong reference to this instance because most objects don't retain their delegates:
 ```objc
-_multiDelegate = [[ILABMultiDelegate alloc] initWithProtocol:@protocol(UITableViewDataSource)];
+_multiDelegate = [ILABMultiDelegate delegateWithProtocol:@protocol(UITableViewDataSource)];
 ```
 
 Then add all the actual delegates to the `_multiDelegate` object:
@@ -60,7 +60,7 @@ Your implementation would then look like this:
 {
     if ((self=[super init]))
     {
-        _delegate=(id)[[ILABMultiDelegate alloc] initWithProtocol:@protocol(ILABDelegateObjectDelegate)];
+        _delegate=[ILABMultiDelegate delegateWithProtocol:@protocol(ILABDelegateObjectDelegate)];
     }
     
     return self;
@@ -74,13 +74,7 @@ Your implementation would then look like this:
 
 ```
 
-Here we are creating the instance of `ILABMultiDelegate` and assigning it to our _delegate ivar by casting it to `id`.  Notice how we are passing the protocol of our delegate to the constructor?  We do this to insure that any future delegates added conform to the protocol.  If you try to add a delegate that doesn't conform, it will throw an exception.  If you don't want this behavior, you can simply do:
-
-```objc
-_delegate=(id)[[ILABMultiDelegate alloc] init];
-```
-
-From this point forward you can treat it just as you would `id<ILABYourClassDelegate>`.
+Here we are creating the instance of `ILABMultiDelegate` and assigning it to our _delegate ivar.  Notice how we are passing the protocol of our delegate to the constructor?  We do this to insure that any future delegates added conform to the protocol. 
 
 To add a delegate, your client class would:
 
@@ -90,11 +84,80 @@ ILABYourClass *myClass=[ILABYourClass new];
 
 ```
 
+## Multiple Protocols
+
+`ILABMultiDelegate` allows you to specify multiple protocols that it will handle.  In strict mode, any delegate added to the `ILABMultiDelegate` instance must implement **ALL** of the protocols or it will raise an exception.  
+
+In non-strict mode, each delegate added can implement one or more of any of the protocols that the `ILABMultiDelegate` handles without raising an exception.
+
+For example, let's say we have these three protocols defined:
+
+```objc
+@protocol ProtocolA <NSObject>
+
+-(void)selector_1;
+
+@end
+
+@protocol ProtocolB <NSObject>
+
+-(void)selector_2;
+
+@end
+
+@protocol ProtocolC <NSObject>
+
+-(void)selector_3;
+
+@end
+```
+
+Now we have two classes that will act as delegates, implementing these protocols:
+
+```objc
+@interface DelegateAB : NSObject<ProtocolA, ProtocolB>
+@end
+
+
+@interface DelegateC : NSObject<ProtocolC>
+@end
+
+```
+
+Our class is defined:
+
+```objc
+@interface OurObject : NSObject
+
+@property (readonly) id<ILABMultiDelegateProtocol, ProtocolA, ProtocolB, ProtocolC> delegate;
+
+@end
+```
+
+Our initializer for the class:
+
+```objc
+@implementation OurObject
+
+-(instancetype)init {
+    if ((self = [super init])) {
+        _delegate = [ILABMultiDelegate delegateWithProtocols:@[@protocol(ProtocolA),@protocol(ProtocolB),@protocol(ProtocolC)] strict:NO];
+    }
+    
+    return self;
+}
+@end
+
+```
+
+In our initializer we are creating a new instance of the `ILABMultiDelegate` passing in the list of protocols a delegate should implement.  Note that passing `NO` to `strict:` tells the `ILABMultiDelegate` that any delegate added only needs to conform to one or more of the protocols.  If we had passed `YES`, then each delegate added would need to conform to **ALL** protocols.
+
+
 
 ## Things of Note
 
 * Every method invocation will be forwarded to each object in the list in the order they were added.
-* If a method returns a value the return value will be from the last object that responded to the method. For example if object `A` implements method `getInt` by returning `1`, object `B` implements `getInt` by returning `2` and object `C` doesn't implement `getInt`, calling `getInt` on an `ILABMultiDelegate` containing `A`, `B` and `C` (in that order) will return `2`.
+* If a method returns a value the return value will be from the **first** delegate that responded to the method. For example if object `A` implements method `getInt` by returning `1`, object `B` implements `getInt` by returning `2` and object `C` doesn't implement `getInt`, calling `getInt` on an `ILABMultiDelegate` containing `A`, `B` and `C` (in that order) will return `1`.
 * `ILABMultiDelegate` doesn't keep strong references to the objects added to it.
 * Some objects only call `respondsToSelector:` when you first set the delegate to improve performance, so make sure you add all your delegates to the `ILABMultiDelegate` before you set it as the delegate.
 

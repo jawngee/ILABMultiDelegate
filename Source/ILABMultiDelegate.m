@@ -11,55 +11,54 @@
 #import "ILABMultiDelegate.h"
 #import <objc/runtime.h>
 
-@interface ILABMultiDelegate()
+@interface ILABMultiDelegate() {
+    NSPointerArray* delegates;
+    NSMutableArray<Protocol *> *protocols;
+    NSString *protocolNames;
+    BOOL strictMode;
+}
 @end
 
 @implementation ILABMultiDelegate
 
+@synthesize protocols = protocols;
+
 #pragma mark - Init/Dealloc
 
--(instancetype)init
-{
-    return [self initWithDelegates:nil];
+-(instancetype)init {
+    [NSException raise:@"ILABMultiDelegate can not be initialized without specifying one or more protocols." format:@"You cannot initialize ILABMultiDelegate by calling it's `init` method."];
+    
+    return nil;
 }
 
--(instancetype)initWithProtocol:(Protocol *)protocol
-{
-    if ((self=[self initWithDelegates:nil]))
-    {
-        _protocol=protocol;
-        if (_protocol)
+-(instancetype)initWithProtocol:(Protocol *)protocol {
+    return [self initWithProtocols:@[protocol] strict:YES];
+}
+
+-(instancetype)initWithProtocols:(NSArray<Protocol *> *)protocolsArray {
+    return [self initWithProtocols:protocolsArray strict:YES];
+}
+
+-(instancetype)initWithProtocols:(NSArray<Protocol *> *)protocolsArray strict:(BOOL)strict {
+    if ((self = [super init])) {
+        if (protocolsArray.count == 0) {
+            [NSException raise:@"Missing protocols for ILABMultiDelegate." format:@"You must specify one or more protocols for the ILABMultiDelegate."];
+        }
+        
+        strictMode = strict;
+        
+        protocols = [NSMutableArray new];
+        
+        NSMutableArray *protocolNameList = [NSMutableArray new];
+        
+        delegates = [NSPointerArray weakObjectsPointerArray];
+        for(Protocol *protocol in protocolsArray) {
             class_addProtocol([self class], protocol);
-    }
-    
-    return self;
-}
-
--(instancetype)initWithDelegates:(NSArray *)delegates
-{
-    if ((self=[super init]))
-    {
+            [protocols addObject:protocol];
+            [protocolNameList addObject:NSStringFromProtocol(protocol)];
+        }
         
-        _delegates = [NSPointerArray weakObjectsPointerArray];
-        
-        for (id delegate in delegates)
-            [_delegates addPointer:(__bridge void*)delegate];
-    }
-    
-    return self;
-}
-
--(instancetype)initWithDelegates:(NSArray *)delegates protocol:(Protocol *)protocol
-{
-    for(id<NSObject> delegate in delegates)
-    {
-        if (![delegate conformsToProtocol:protocol])
-            [NSException raise:@"Delegate does not conform to protocol." format:@"Delegate does not conform to %@ protocol",NSStringFromProtocol(protocol)];
-    }
-    
-    if ((self=[self initWithDelegates:delegates]))
-    {
-        _protocol=protocol;
+        protocolNames = [protocolNameList componentsJoinedByString:@", "];
     }
     
     return self;
@@ -67,162 +66,167 @@
 
 #pragma mark - SVMultiDelegateProtocol
 
--(void)addDelegate:(id<NSObject>)delegate
-{
+-(BOOL)delegateConformsToProtocols:(id<NSObject>)delegate {
+    if (!strictMode) {
+        return YES;
+    }
+    
+    for(Protocol *protocol in protocols) {
+        if (![delegate conformsToProtocol:protocol]) {
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
+-(void)addDelegate:(id<NSObject>)delegate {
     if ([self indexOfDelegate:delegate]!=NSNotFound)
         return;
     
-    if (_protocol && ![delegate conformsToProtocol:_protocol])
-        [NSException raise:@"Delegate does not conform to protocol." format:@"Delegate does not conform to %@ protocol.",NSStringFromProtocol(_protocol)];
+    if (![self delegateConformsToProtocols:delegate]) {
+        [NSException raise:@"Delegate does not conform to protocol." format:@"Delegate does not conform to %@ protocols.", protocolNames];
+    }
     
-    [_delegates addPointer:(__bridge void*)delegate];
+    [delegates addPointer:(__bridge void*)delegate];
 }
 
--(NSUInteger)indexOfDelegate:(id)delegate
-{
-    for (NSUInteger i=0; i<_delegates.count; i++)
+-(NSUInteger)indexOfDelegate:(id)delegate {
+    for (NSUInteger i=0; i<delegates.count; i++)
     {
-        if ([_delegates pointerAtIndex:i] == (__bridge void*)delegate)
+        if ([delegates pointerAtIndex:i] == (__bridge void*)delegate)
             return i;
     }
     
     return NSNotFound;
 }
 
--(void)insertDelegate:(id<NSObject>)delegate beforeDelegate:(id)otherDelegate
-{
-    if (_protocol && ![delegate conformsToProtocol:_protocol])
-        [NSException raise:@"Delegate does not conform to protocol." format:@"Delegate does not conform to %@ protocol.",NSStringFromProtocol(_protocol)];
-    
-    NSUInteger oldIndex=[self indexOfDelegate:delegate];
-    if (oldIndex!=NSNotFound)
-        [_delegates removePointerAtIndex:oldIndex];
-    
-    NSUInteger index = [self indexOfDelegate:otherDelegate];
-    if (index == NSNotFound)
-        index = _delegates.count;
-    
-    [_delegates insertPointer:(__bridge void*)delegate atIndex:index];
-}
-
--(void)insertDelegate:(id<NSObject>)delegate afterDelegate:(id)otherDelegate
-{
-    if (_protocol && ![delegate conformsToProtocol:_protocol])
-        [NSException raise:@"Delegate does not conform to protocol." format:@"Delegate does not conform to %@ protocol.",NSStringFromProtocol(_protocol)];
-    
-    NSUInteger oldIndex=[self indexOfDelegate:delegate];
-    if (oldIndex!=NSNotFound)
-        [_delegates removePointerAtIndex:oldIndex];
-    
-    NSUInteger index = [self indexOfDelegate:otherDelegate];
-    if (index == NSNotFound)
-        index = 0;
-    else
-        index += 1;
-    
-    [_delegates insertPointer:(__bridge void*)delegate atIndex:index];
-}
-
--(void)insertDelegate:(id<NSObject>)delegate atIndex:(NSInteger)index
-{
-    if (_protocol && ![delegate conformsToProtocol:_protocol])
-        [NSException raise:@"Delegate does not conform to protocol." format:@"Delegate does not conform to %@ protocol.",NSStringFromProtocol(_protocol)];
-    
-    NSUInteger oldIndex=[self indexOfDelegate:delegate];
-    if (oldIndex!=NSNotFound)
-    {
-        if (oldIndex==index)
-            return;
-        
-        [_delegates removePointerAtIndex:oldIndex];
-        
-        if (oldIndex<index)
-            index--;
+-(void)insertDelegate:(id<NSObject>)delegate beforeDelegate:(id)otherDelegate {
+    if (![self delegateConformsToProtocols:delegate]) {
+        [NSException raise:@"Delegate does not conform to protocol." format:@"Delegate does not conform to %@ protocols.", protocolNames];
     }
     
-    [_delegates insertPointer:(__bridge void*)delegate atIndex:index];
+    NSUInteger oldIndex=[self indexOfDelegate:delegate];
+    if (oldIndex!=NSNotFound) {
+        [delegates removePointerAtIndex:oldIndex];
+    }
+    
+    NSUInteger index = [self indexOfDelegate:otherDelegate];
+    if (index == NSNotFound) {
+        index = delegates.count;
+    }
+    
+    [delegates insertPointer:(__bridge void*)delegate atIndex:index];
 }
 
--(void)removeDelegate:(id)delegate
-{
+-(void)insertDelegate:(id<NSObject>)delegate afterDelegate:(id)otherDelegate {
+    if (![self delegateConformsToProtocols:delegate]) {
+        [NSException raise:@"Delegate does not conform to protocol." format:@"Delegate does not conform to %@ protocols.", protocolNames];
+    }
+    
+    NSUInteger oldIndex=[self indexOfDelegate:delegate];
+    if (oldIndex!=NSNotFound) {
+        [delegates removePointerAtIndex:oldIndex];
+    }
+    
+    NSUInteger index = [self indexOfDelegate:otherDelegate];
+    if (index == NSNotFound) {
+        index = 0;
+    } else {
+        index += 1;
+    }
+    
+    [delegates insertPointer:(__bridge void*)delegate atIndex:index];
+}
+
+-(void)removeDelegate:(id)delegate {
     NSUInteger index = [self indexOfDelegate:delegate];
-    if (index != NSNotFound)
-        [_delegates removePointerAtIndex:index];
+    if (index != NSNotFound) {
+        [delegates removePointerAtIndex:index];
+    }
     
-    [_delegates compact];
+    [delegates compact];
 }
 
--(void)removeAllDelegates
-{
-    for (NSUInteger i = _delegates.count; i > 0; i -= 1)
-        [_delegates removePointerAtIndex:i - 1];
+-(void)removeAllDelegates {
+    for (NSUInteger i = delegates.count; i > 0; i -= 1) {
+        [delegates removePointerAtIndex:i - 1];
+    }
 }
 
--(BOOL)respondsToSelector:(SEL)selector
-{
-    if ([super respondsToSelector:selector])
+-(BOOL)respondsToSelector:(SEL)selector {
+    if ([super respondsToSelector:selector]) {
         return YES;
+    }
     
-    for (id delegate in _delegates)
-    {
-        if (delegate && [delegate respondsToSelector:selector])
+    for (id delegate in delegates) {
+        if (delegate && [delegate respondsToSelector:selector]) {
             return YES;
+        }
     }
     
     return NO;
 }
 
--(NSMethodSignature *)methodSignatureForSelector:(SEL)selector
-{
+-(NSMethodSignature *)methodSignatureForSelector:(SEL)selector {
     NSMethodSignature* signature = [super methodSignatureForSelector:selector];
-    if (signature)
+    if (signature) {
         return signature;
+    }
     
-    [_delegates compact];
+    [delegates compact];
     
-    if (_delegates.count == 0)
+    if (delegates.count == 0) {
         return [self methodSignatureForSelector:@selector(description)];
+    }
     
-    for (id delegate in _delegates)
-    {
-        if (!delegate)
+    for (id delegate in delegates) {
+        if (!delegate) {
             continue;
+        }
         
         signature = [delegate methodSignatureForSelector:selector];
-        if (signature)
+        if (signature) {
             break;
+        }
     }
     
     return signature;
 }
 
-- (void)forwardInvocation:(NSInvocation *)invocation
-{
-    if (_delegates.count==0)
+- (void)forwardInvocation:(NSInvocation *)invocation {
+    if (delegates.count==0) {
         return;
+    }
     
     SEL selector = [invocation selector];
     BOOL responded = NO;
     BOOL hasDelegates = NO;
     
-    for (id delegate in _delegates)
-    {
-        if (delegate)
+    for (id delegate in delegates) {
+        if (delegate) {
             hasDelegates = YES;
-
-        if (delegate && [delegate respondsToSelector:selector])
-        {
+        }
+        
+        if (delegate && [delegate respondsToSelector:selector]) {
             [invocation invokeWithTarget:delegate];
+            if ([invocation methodSignature].methodReturnLength > 0) {
+                return;
+            }
+            
             responded = YES;
         }
     }
     
-    if (hasDelegates && !responded && _protocol)
-    {
-        struct objc_method_description methodDesc = protocol_getMethodDescription(_protocol, selector, YES, YES);
-        if (methodDesc.name != NULL)
-            [self doesNotRecognizeSelector:selector];
+    if (hasDelegates && !responded && strictMode) {
+        for(Protocol *protocol in protocols) {
+            struct objc_method_description methodDesc = protocol_getMethodDescription(protocol, selector, YES, YES);
+            if (methodDesc.name != NULL) {
+                [self doesNotRecognizeSelector:selector];
+            }
+        }
     }
 }
 
 @end
+

@@ -40,13 +40,6 @@
  */
 -(void)insertDelegate:(id<NSObject>)delegate afterDelegate:(id)otherDelegate;
 
-/**
- *	Inserts a delegate at the given index.  If delegate already is in the list, it is moved to the new position.
- *
- *	@param delegate The delegate to insert
- *	@param index    The index to insert at
- */
--(void)insertDelegate:(id<NSObject>)delegate atIndex:(NSInteger)index;
 
 /**
  *	Removes a specific delegate
@@ -69,8 +62,7 @@
  */
 @interface ILABMultiDelegate : NSObject<ILABMultiDelegateProtocol>
 
-@property (readonly, nonatomic) NSPointerArray* delegates;  /**< The list of delegates */
-@property (readonly, nonatomic) Protocol *protocol;         /**< The `Protocol` that the delegates must conform to, optional */
+@property (readonly, nonatomic) NSArray<Protocol *> *protocols;         /**< The `Protocol` that the delegates must conform to, optional */
 
 /**
  *	Creates a new instance with the `Protocol` that the delegates must conform to.  If you later add a
@@ -82,32 +74,67 @@
  */
 -(id)initWithProtocol:(Protocol *)protocol;
 
-/**
- *	Creates a new instance with a list of delegates
- *
- *	@param delegates The list of delegates
- *
- *	@return The new instance
- */
-- (id)initWithDelegates:(NSArray*)delegates;
 
 /**
- *	Creates a new instance with a list of delegates and the `Protocol` they must conform to.  If you later add a
+ *	Creates a new instance with the `Protocol` that the delegates must conform to.  If you later add a
  *  delegate that does not conform to the protocol, an exception will be raised.
  *
- *	@param delegates The list of delegates
- *	@param protocol  The `Protocol` the delegates must conform to
+ *	@param protocols The `Protocol` to conform to
  *
  *	@return The new instance
  */
-- (id)initWithDelegates:(NSArray*)delegates protocol:(Protocol *)protocol;
+-(id)initWithProtocols:(NSArray<Protocol *> *)protocols;
 
+
+/**
+ *	Creates a new instance with the `Protocol` that the delegates must conform to.  If you later add a
+ *  delegate that does not conform to the protocol, an exception will be raised.
+ *
+ *	@param protocols The `Protocol` to conform to
+ *	@param strict For multiple protocols, insure that the added delegates conform to them.  Default is YES.
+ *
+ *	@return The new instance
+ */
+-(id)initWithProtocols:(NSArray<Protocol *> *)protocols strict:(BOOL)strict;
+
+
+/**
+ Add a delegate
+ 
+ @param delegate The delegate to add
+ */
 -(void)addDelegate:(id<NSObject>)delegate;
--(void)insertDelegate:(id<NSObject>)delegate beforeDelegate:(id)otherDelegate;
--(void)insertDelegate:(id<NSObject>)delegate afterDelegate:(id)otherDelegate;
--(void)insertDelegate:(id<NSObject>)delegate atIndex:(NSInteger)index;
 
+
+/**
+ Insert a delegate before another delegate in the list
+ 
+ @param delegate The delegate to insert
+ @param otherDelegate The delegate to insert before
+ */
+-(void)insertDelegate:(id<NSObject>)delegate beforeDelegate:(id)otherDelegate;
+
+
+/**
+ Insert a delegate after another delegate in the list
+ 
+ @param delegate The delegate to insert
+ @param otherDelegate The other deletage to insert after
+ */
+-(void)insertDelegate:(id<NSObject>)delegate afterDelegate:(id)otherDelegate;
+
+
+/**
+ Removes a delegate
+ 
+ @param delegate The delegate to remove
+ */
 -(void)removeDelegate:(id)delegate;
+
+
+/**
+ Removes all delegates.
+ */
 -(void)removeAllDelegates;
 
 
