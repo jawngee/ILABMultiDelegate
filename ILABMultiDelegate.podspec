@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "ILABMultiDelegate"
-  s.version      = "0.0.3"
+  s.version      = "0.0.5"
   s.summary      = "Objective-C delegate multiplexing."
   s.homepage     = "https://github.com/jawngee/ILABMultiDelegate"
   s.license      = 'MIT'
