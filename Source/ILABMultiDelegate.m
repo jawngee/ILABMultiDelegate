@@ -211,7 +211,8 @@
     BOOL responded = NO;
     BOOL hasDelegates = NO;
     
-    for (id delegate in delegates) {
+    NSArray *delegatesCopy = [delegates copy];
+    for (id delegate in delegatesCopy) {
         if (delegate) {
             hasDelegates = YES;
         }
