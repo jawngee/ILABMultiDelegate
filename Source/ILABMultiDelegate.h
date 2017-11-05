@@ -62,7 +62,7 @@
  */
 @interface ILABMultiDelegate : NSObject<ILABMultiDelegateProtocol>
 
-@property (readonly, nonatomic) NSArray<Protocol *> *protocols;         /**< The `Protocol` that the delegates must conform to, optional */
+@property (readonly, nonatomic) NSArray<Protocol *> *protocols;         ///< The `Protocol` that the delegates must conform to, optional 
 
 /**
  *	Creates a new instance with the `Protocol` that the delegates must conform to.  If you later add a
